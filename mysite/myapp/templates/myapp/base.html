@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="shadow-lg">
+        <div class="flex flex-wrap justify-between ml-5 items-center mx-auto px-4 py-2.5"> <!--this is where you align things inn the navbar-->
+            <a href="" class="flex items-center">
+                <img class="h-9 m-3" src="https://cdn2.iconfinder.com/data/icons/ios-14-custom-application/62/application-11-64.png" alt="">
+                <span class="'self-center text-xml font-semibold">The Digital Marketplace</span>
+            </a>
+            <!-- navbar links -->
+            <div class="flex items-center">
+                <a class="mr-6 text-sm font-medium text-grey-500" href="">Dashboard</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="">Sales</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="">Orders</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="">Add Product</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="">My Purchases</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="">Logout</a>
+
+            </div>
+        </div>
+    </nav>
+    {% block body %}  
+    {% endblock %}
+</body>
+
+
+</html>
