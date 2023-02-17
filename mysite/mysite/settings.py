@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yhn%6a7@enem#rexld5xuyt-*2)f@or%h%sz1$5j%n&29=-ru9'
+SECRET_KEY = 'MY_SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,6 +81,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+STRIPE_SECRET_KEY=env.str('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY=env.str('STRIPE_PUBLISHABLE_KEY')
 
 
 # Password validation
