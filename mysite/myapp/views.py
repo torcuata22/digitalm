@@ -20,6 +20,7 @@ def detail(request, id):
 @csrf_exempt 
 def create_checkout_session(request, id):
      request_data = json.loads(request.body)
+     print(request_data)
      product = Product.objects.get(id=id)
      stripe.api_key = settings.STRIPE_SECRET_KEY
      checkout_session = stripe.checkout.Session.create(
