@@ -91,7 +91,7 @@ def product_edit(request, id):
             product_form.save()
             return redirect('index')
     
-    return render(request, 'myapp/product_edit.html', {"product_form":product_form})
+    return render(request, 'myapp/product_edit.html', {"product_form":product_form, 'product':product}) #added product here so we cna have delete funcitonality in edit
 
 def product_delete(request, id):
     product = Product.objects.get(id=id)
@@ -99,3 +99,7 @@ def product_delete(request, id):
         product.delete()
         return redirect ('index')
     return render(request, 'myapp/delete.html', {'product':product})
+
+def dashboard(request):
+    products = Product.objects.all()
+    return render(request, 'myapp/dashboard.html', {"products":products})
