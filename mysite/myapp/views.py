@@ -112,4 +112,6 @@ def register(request):
         new_user.save()
         return redirect('index')
     user_form = UserRegistrationForm()
-    return render (request, 'myapp/register.html',{"user_form":user_form})
+    return render(request,'myapp/register.html',{'user_form':user_form})
+    
+
