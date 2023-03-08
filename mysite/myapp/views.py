@@ -65,6 +65,15 @@ def payment_success_view(request):
     session = stripe.checkout.Session.retrieve(session_id)
     order = get_object_or_404(OrderDetail, stripe_payment_intent = session.payment_intent)
     order.has_paid = True
+    #update sales stats for a product
+    product = Product.objects.get(id=order.product.id)
+    product.total_sales_amount = product.total_sales_amount + int(product.price)
+    #update sales stats for a product
+    product.total_sales = product.total_sales + 1
+    product.save()
+    
+
+    
     order.save()
 
     return render(request, 'myapp/payment_success.html', {'order':order})
@@ -107,7 +116,7 @@ def product_delete(request, id):
     return render(request, 'myapp/delete.html', {'product':product})
 
 def dashboard(request):
-    products = Product.objects.filter(seller = request.user) 
+    products = Product.objects.filter(seller=request.user.id) 
     return render(request, 'myapp/dashboard.html', {"products":products})
 
 def register(request):
