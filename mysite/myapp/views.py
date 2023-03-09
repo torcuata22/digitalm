@@ -139,26 +139,31 @@ def my_purchases (request):
     return render(request, 'myapp/purchases.html', {'orders':orders})
 
 def sales (request):
-    orders=OrderDetail.objects.filter(product__seller=request.user) 
+    orders=OrderDetail.objects.filter(product__seller=request.user.id) #MUST use user.id so I get the ID number, otherwise, it's a LazyObject and I get an error
     total_sales = orders.aggregate(Sum('amount'))
     #365 days sales (sum):
     last_year = datetime.date.today() - datetime.timedelta(days=365)
-    data=OrderDetail.objects.filter(product__seller=request.user, created_on__gt=last_year) 
+    data=OrderDetail.objects.filter(product__seller=request.user.id, created_on__gt=last_year) 
     yearly_sales = data.aggregate(Sum('amount'))
     #30 days sales
     last_month = datetime.date.today() - datetime.timedelta(days=30)
-    data=OrderDetail.objects.filter(product__seller=request.user, created_on__gt=last_month) 
+    data=OrderDetail.objects.filter(product__seller=request.user.id, created_on__gt=last_month) 
     monthly_sales = data.aggregate(Sum('amount'))
     #7 days sales
     last_week = datetime.date.today() - datetime.timedelta(days=7)
-    data=OrderDetail.objects.filter(product__seller=request.user, created_on__gt=last_week) 
+    data=OrderDetail.objects.filter(product__seller=request.user.id, created_on__gt=last_week) 
     weekly_sales = data.aggregate(Sum('amount'))
     #daily sum for past 30 days:
-    daily_sales_sums=OrderDetail.objects.filter(product__seller=request.user).values('created_on__date').order_by('created_on__date').annotate(sum=Sum('amount'))
-    print(daily_sales_sums)
+    daily_sales_sums=OrderDetail.objects.filter(product__seller=request.user.id).values('created_on__date').order_by('created_on__date').annotate(sum=Sum('amount'))
+    #Product sales sum:
+    product_sales_sums=OrderDetail.objects.filter(product__seller=request.user.id).values('product__name').order_by('product__name').annotate(sum=Sum('amount'))
+    print(product_sales_sums)
+
+
     return render(request, 'myapp/sales.html', {
         'total_sales':total_sales, 
         'yearly_sales':yearly_sales, 
         'monthly_sales': monthly_sales, 
         'weekly_sales':weekly_sales,
-        'daily_sales_sums':daily_sales_sums})
+        'daily_sales_sums':daily_sales_sums,
+        'product_sales_sums':product_sales_sums,})

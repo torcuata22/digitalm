@@ -65,6 +65,32 @@
         
     </div>
 
+
+    <div class="flex">
+        <div class="w-1/2"></div> <!--Empty div forces the next one to move to the right-->
+        <div class="w-1/2 shadow-lg m-10">
+        <div class="ml-10 mt-10 font-bold text-xl">Product Sales</div>
+        <div class="flex m-10 mt-5 mb-5">
+            
+            <div class="w-1/2">
+                Product Name
+            </div>
+
+            <div class="w-1/2">
+                Total Sales
+            </div>
+        </div>
+
+            {% for product_sales_sum in product_sales_sums %}
+                <div class="flex m-10 mt-5 mb-5">
+                    <div class="w-1/2">{{ product_sales_sum.product__name }}</div>
+                    <div class="w-1/2 font-bold">${{product_sales_sum.sum}}</div>
+                </div>
+            {% endfor %}
+            </div>
+            
+        
+    </div>
     
 </div>
 
