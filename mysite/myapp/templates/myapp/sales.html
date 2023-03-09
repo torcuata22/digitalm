@@ -41,7 +41,7 @@
     </div>
 
     <div class="flex">
-        <div class="w-1/2 shadow-lg m-10">
+        <div class="w-1/2 shadow-lg m-10" id="sales-table">
         <div class="ml-10 mt-10 font-bold text-xl">30 day sales</div>
         <div class="flex m-10 mt-5 mb-5">
             
@@ -57,11 +57,16 @@
             {% for daily_sales_sum in daily_sales_sums %}
                 <div class="flex m-10 mt-5 mb-5">
                     <div class="w-1/2">{{ daily_sales_sum.created_on__date }}</div>
-                    <div class="w-1/2 font-bold">${{daily_sales_sum.sum}}</div>
+                    <div class="w-1/2 font-bold day-sum">${{daily_sales_sum.sum}}</div>
                 </div>
             {% endfor %}
             </div>
-            
+            <div class="w-1/2">
+                <div>
+                    <canvas id="myChart"></canvas>
+                  </div>
+            </div>
+          
         
     </div>
 
@@ -93,5 +98,32 @@
     </div>
     
 </div>
+
+<!--CHARTJS-->
+<script>
+    //Get access to values:
+
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: 'Sales in the past 30 days',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
 
 {% endblock %}
