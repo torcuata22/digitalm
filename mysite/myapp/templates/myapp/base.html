@@ -20,10 +20,10 @@
             <!-- navbar links -->
             <div class="flex items-center">
                 <a class="mr-6 text-sm font-medium text-grey-500" href="{% url 'dashboard' %}">Dashboard</a>
-                <a class="mr-6 text-sm font-medium text-grey-500" href="">Sales</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="{% url 'sales' %}">Sales</a>
                 <a class="mr-6 text-sm font-medium text-grey-500" href="">Orders</a>
-                <a class="mr-6 text-sm font-medium text-grey-500" href="">Add Product</a>
-                <a class="mr-6 text-sm font-medium text-grey-500" href="">My Purchases</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="{% url 'createproduct' %}">Add Product</a>
+                <a class="mr-6 text-sm font-medium text-grey-500" href="{% url 'purchases' %}">My Purchases</a>
                 <a class="mr-6 text-sm font-medium text-grey-500" href="{% url 'logout' %}">Logout</a>
 
             </div>

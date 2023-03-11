@@ -61,22 +61,22 @@
                 </div>
             {% endfor %}
             </div>
-            <div class="w-1/2">
-                <div>
+            <div class="w-1/2 shadow-lg m-10">
+                <div class="ml-10 mt-10 font-bold text-xl p-10">30 Day Sales</div>
                     <canvas id="myChart"></canvas>
-                  </div>
+                  
             </div>     
         
     </div>
 
 
     <div class="flex">
-        <div class="w-1/2">
-            <div>
+        <div class="w-1/2 shadow-lg p-10">
+            <div class="ml-10 mt-10 font-bold text-xl p-10">Product Sales</div>
                 <canvas id="myChart1"></canvas>
-              </div>
+              
         </div> 
-        <div class="w-1/2 shadow-lg m-10">
+        <div class="w-1/2 shadow-lg m-15 ml-20">
         <div class="ml-10 mt-10 font-bold text-xl">Product Sales</div>
         <div class="flex m-10 mt-5 mb-5">
             
@@ -171,7 +171,7 @@
       data: {
         labels: name_values,
         datasets: [{
-          label: 'Sales in the past 30 days',
+          label: 'Product Sales Sum',
           data:product_sum_values,
           borderWidth: 1
         }]
